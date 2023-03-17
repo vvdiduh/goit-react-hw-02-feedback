@@ -15,8 +15,11 @@ class App extends Component {
     return this.state.good + this.state.neutral + this.state.bad;
   };
 
-  countPositiveFeedbackPercentage = (good, neutral, bad) => {
-    return Math.round((good * 100) / (good + neutral + bad));
+  countPositiveFeedbackPercentage = () => {
+    return Math.round(
+      (this.state.good * 100) /
+        (this.state.good + this.state.neutral + this.state.bad)
+    );
   };
 
   addFeedback = feedback => {
@@ -30,6 +33,8 @@ class App extends Component {
   render() {
     const { good, neutral, bad } = this.state;
     const total = this.countTotalFeedback();
+    const countPositiveFeedbackPercentage =
+      this.countPositiveFeedbackPercentage();
 
     return (
       <Section title="Будь ласка залиште відгук">
@@ -44,7 +49,7 @@ class App extends Component {
               neutral={neutral}
               bad={bad}
               total={total}
-              positivePercentage={this.countPositiveFeedbackPercentage}
+              positivePercentage={countPositiveFeedbackPercentage}
             />
           </>
         ) : (
