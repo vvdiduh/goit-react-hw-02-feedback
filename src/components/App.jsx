@@ -33,8 +33,7 @@ class App extends Component {
   render() {
     const { good, neutral, bad } = this.state;
     const total = this.countTotalFeedback();
-    const countPositiveFeedbackPercentage =
-      this.countPositiveFeedbackPercentage();
+    const positiveFeedbackPercentage = this.countPositiveFeedbackPercentage();
 
     return (
       <Section title="Будь ласка залиште відгук">
@@ -42,14 +41,14 @@ class App extends Component {
           options={this.state}
           onLeaveFeedback={this.addFeedback}
         />
-        {total > 0 ? (
+        {total ? (
           <>
             <Statistics
               good={good}
               neutral={neutral}
               bad={bad}
               total={total}
-              positivePercentage={countPositiveFeedbackPercentage}
+              positivePercentage={positiveFeedbackPercentage}
             />
           </>
         ) : (
